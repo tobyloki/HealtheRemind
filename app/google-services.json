@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "800206300830",
+    "firebase_url": "https://healtheremind.firebaseio.com",
+    "project_id": "healtheremind",
+    "storage_bucket": "healtheremind.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800206300830:android:35a61efc4bc65b25f17d8f",
+        "android_client_info": {
+          "package_name": "com.example.hackathonapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800206300830-gbbi0tbicchn145sd5po4m2mpgigbdi1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hackathonapp1",
+            "certificate_hash": "e74bc9c8a63e921f07dfcb58744542266a00c06d"
+          }
+        },
+        {
+          "client_id": "800206300830-k1nn3m7ga8t2bj92j38hac1erk8b928m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvqt7GqN6kGalDxn_MoAD3qdFxeB337YY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800206300830-k1nn3m7ga8t2bj92j38hac1erk8b928m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
