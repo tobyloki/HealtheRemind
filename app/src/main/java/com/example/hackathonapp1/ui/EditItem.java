@@ -81,7 +81,26 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
         editTime.setText(appointmentItem.getTime());
         Log.v("MYAPP", "This item exists in row " + appointmentItem.getRow());
 
-        new UpdateInfo().execute();
+        Log.v("MYAPP", "Value of appointment type: " + appointmentItem.getType());
+
+        Button saveBtn = findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        new UpdateInfo().execute();
+                    }
+                }
+        );
+
+        Button deleteBtn = findViewById(R.id.deleteBtn);
+        deleteBtn.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        new DeleteInfo().execute();
+                    }
+                }
+        );
+
     }
 
     @SuppressLint("DefaultLocale")
@@ -117,6 +136,7 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
         editTime.setText(time);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class UpdateInfo extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... param) {
@@ -132,6 +152,7 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
                     put("description", editDescription.getText());
                     Log.v("MYAPP", "Updated Description: " + editDescription.getText());
                 }};
+                Log.v("MYAPP", "Type: " + appointmentItem.getType());
                 StringEntity entity = new StringEntity(params.toString());
                 AsyncHttpClient client = new SyncHttpClient();
                 client.put(getApplicationContext(), "https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + id + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), entity, "application/json", new TextHttpResponseHandler() {
@@ -145,27 +166,62 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
                     public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response) {
                         Log.i(TAG, "Status code: " + statusCode);
                         Log.i(TAG, "Response: " + response);
+//                        try {
+//                            JSONObject mainObject = new JSONObject(response);
+//                            Log.i("MYAPP: ",String.valueOf(mainObject.get(appointmentItem.getType())));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+
+                        runOnUiThread (new Thread(new Runnable() {
+                            public void run() {
+                                finish();
+                            }
+                        }));
+
+                    }
+
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    private class DeleteInfo extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... param) {
+            try {
+                String id = "0";
+                String type = "prescription";
+                int index = 0;
+                AsyncHttpClient client = new SyncHttpClient();
+                client.delete("https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + id + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response, Throwable throwable) {
+                        Log.e(TAG, "Status code: " + statusCode);
+                        Log.e(TAG, "Response: " + response);
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response) {
+                        Log.i(TAG, "Status code: " + statusCode);
+                        Log.i(TAG, "Response: " + response);
                         try {
                             JSONObject mainObject = new JSONObject(response);
-                            Log.i("MYAPP: ",String.valueOf(mainObject.get(appointmentItem.getType())));
+                            Log.i("id: ",String.valueOf(mainObject.get("id")));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        Button saveBtn = findViewById(R.id.saveBtn);
-                        saveBtn.setOnClickListener(
-                                new Button.OnClickListener(){
-                                    public void onClick(View v){
-                                        runOnUiThread (new Thread(new Runnable() {
-                                            public void run() {
-                                                finish();
-                                            }
-                                        }));
-                                    }
-                                }
-                        );
+                        runOnUiThread (new Thread(new Runnable() {
+                            public void run() {
+                                finish();
+                            }
+                        }));
                     }
-
                 });
             } catch (Exception e) {
                 e.printStackTrace();

@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
                     appointmentItem.setTime(elements.getJSONObject(position).getString("time").toString());
                     appointmentItem.setDetails(elements.getJSONObject(position).getString("description").toString());
                     appointmentItem.setRow(String.valueOf(position));
-                    appointmentItem.setType("appointments");
+                    appointmentItem.setType("appointment");
                     Log.v("MYAPP", "Your appointment item: " + appointmentItem.info());
                 } catch (JSONException e) {
                     Log.e("MYAPP", "unexpected JSON exception", e);
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
                         appointmentItem.setTime("");
                         appointmentItem.setDetails("");
                         appointmentItem.setRow(String.valueOf(elements.length()));
-                        appointmentItem.setType("appointments");
+                        appointmentItem.setType("appointment");
                         Intent intent = new Intent(requireContext(), EditItem.class);
                         startActivity(intent);
                     }

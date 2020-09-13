@@ -75,7 +75,7 @@ public class NotificationsFragment extends Fragment {
                     appointmentItem.setTime(elements.getJSONObject(position).getString("time").toString());
                     appointmentItem.setDetails(elements.getJSONObject(position).getString("description").toString());
                     appointmentItem.setRow(String.valueOf(position));
-                    appointmentItem.setType("prescriptions");
+                    appointmentItem.setType("prescription");
                     Log.v("MYAPP", "Your appointment item: " + appointmentItem.info());
                 } catch (JSONException e) {
                     Log.e("MYAPP", "unexpected JSON exception", e);
@@ -94,7 +94,7 @@ public class NotificationsFragment extends Fragment {
                         appointmentItem.setTime("");
                         appointmentItem.setDetails("");
                         appointmentItem.setRow(String.valueOf(elements.length()));
-                        appointmentItem.setType("prescriptions");
+                        appointmentItem.setType("prescription");
                         Intent intent = new Intent(requireContext(), EditItem.class);
                         startActivity(intent);
                     }

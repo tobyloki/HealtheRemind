@@ -10,6 +10,6 @@
     <string name="prescriptions">Prescriptions</string>
     <string name="appointments">Appointments</string>
     <string name="reminders">Reminders</string>
-    <string name="welcome">Welcome [Name]</string>
+    <string name="welcome">Welcome</string>
     <string name="reminder1">Reminder 1</string>
 </resources>
