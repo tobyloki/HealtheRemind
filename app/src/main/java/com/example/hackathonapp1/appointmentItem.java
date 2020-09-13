@@ -7,8 +7,9 @@ public class appointmentItem {
     private static String title;
     private static String time;
     private static String date;
-    private static String location;
+    private static String row;
     private static String details;
+    private static String type;
 
     public static String getTitle() {
         return title;
@@ -34,12 +35,12 @@ public class appointmentItem {
         date = val;
     }
 
-    public static String getLocation() {
-        return location;
+    public static String getRow() {
+        return row;
     }
 
-    public static void setLocation(String val) {
-        location = val;
+    public static void setRow(String val) {
+        row = val;
     }
 
     public static String getDetails() {
@@ -50,7 +51,15 @@ public class appointmentItem {
         details = val;
     }
 
+    public static String getType() {
+        return type;
+    }
+
+    public static void setType(String val) {
+        type = val;
+    }
+
     public static String info() {
-        return "Appointment: " + title + ", " + location + " @ " + date + " " + time+ ". Details: " + details;
+        return "Appointment: " + title + " @ " + date + " " + time+ ". Details: " + details;
     }
 }
