@@ -147,7 +147,7 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
                         Log.i(TAG, "Response: " + response);
                         try {
                             JSONObject mainObject = new JSONObject(response);
-                            Log.i("appointments: ",String.valueOf(mainObject.get("appointments")));
+                            Log.i("MYAPP: ",String.valueOf(mainObject.get(appointmentItem.getType())));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
