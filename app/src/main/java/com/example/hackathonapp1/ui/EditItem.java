@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 
 import com.example.hackathonapp1.R;
 import com.example.hackathonapp1.appointmentItem;
+import com.example.hackathonapp1.user;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -141,7 +142,6 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
         @Override
         protected String doInBackground(Void... param) {
             try {
-                String id = "0";
                 JSONObject params = new JSONObject() {{
                     put("title", editTitle.getText());
                     Log.v("MYAPP", "Updated Title: " + editTitle.getText());
@@ -155,7 +155,7 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
                 Log.v("MYAPP", "Type: " + appointmentItem.getType());
                 StringEntity entity = new StringEntity(params.toString());
                 AsyncHttpClient client = new SyncHttpClient();
-                client.put(getApplicationContext(), "https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + id + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), entity, "application/json", new TextHttpResponseHandler() {
+                client.put(getApplicationContext(), "https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + user.getUid() + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), entity, "application/json", new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response, Throwable throwable) {
                         Log.i(TAG, "Status code: " + statusCode);
@@ -193,11 +193,10 @@ public class EditItem extends AppCompatActivity implements DatePickerDialog.OnDa
         @Override
         protected String doInBackground(Void... param) {
             try {
-                String id = "0";
                 String type = "prescription";
                 int index = 0;
                 AsyncHttpClient client = new SyncHttpClient();
-                client.delete("https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + id + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), new TextHttpResponseHandler() {
+                client.delete("https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + user.getUid() + "/" + appointmentItem.getType() + "/" + appointmentItem.getRow(), new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response, Throwable throwable) {
                         Log.e(TAG, "Status code: " + statusCode);

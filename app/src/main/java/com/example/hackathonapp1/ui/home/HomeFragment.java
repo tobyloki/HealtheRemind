@@ -25,6 +25,7 @@ import androidx.navigation.Navigation;
 
 import com.example.hackathonapp1.R;
 import com.example.hackathonapp1.appointmentItem;
+import com.example.hackathonapp1.user;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -111,9 +112,8 @@ public class HomeFragment extends Fragment {
         @Override
         protected String doInBackground(Void... param) {
             try {
-                String id = "0";
                 AsyncHttpClient client = new SyncHttpClient();
-                String url = "https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + id;
+                String url = "https://xvq171cl74.execute-api.us-east-1.amazonaws.com/release/" + user.getUid();
                 client.get(url, new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String response, Throwable throwable) {

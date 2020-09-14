@@ -47,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.AuthStateListener mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    String uid = user.getUid();
-
+                FirebaseUser thisUser = firebaseAuth.getCurrentUser();
+                if (thisUser != null) {
+                    String uid = thisUser.getUid();
+                    user.setUid(uid);
                     Log.i("TEST", "UID IS: " + uid);
+                    Log.i("TEST", "UID IS: " + user.getUid());
+
                 } else {
                     signIn();
                 }
@@ -108,24 +110,24 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        switch (id){
-//            case R.id.signOut: {
-//                signOut();
-//                break;
-//            }
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.signOut: {
+                signOut();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
 
